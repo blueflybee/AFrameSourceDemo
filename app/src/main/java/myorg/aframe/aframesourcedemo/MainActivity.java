@@ -1,6 +1,7 @@
 package myorg.aframe.aframesourcedemo;
 
 import android.content.ComponentCallbacks;
+import android.content.res.ColorStateList;
 import android.content.res.Configuration;
 import android.database.Cursor;
 import android.database.DatabaseErrorHandler;
@@ -8,8 +9,11 @@ import android.database.sqlite.SQLiteCursor;
 import android.database.sqlite.SQLiteCursorDriver;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteQuery;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -36,6 +40,21 @@ public class MainActivity extends AppCompatActivity {
 
       }
     });
+
+    int[] colors = new int[]{Color.RED, Color.GREEN, Color.BLUE};
+    int[] statePressed = new int[]{android.R.attr.state_pressed};
+    int[] stateFocused = new int[]{android.R.attr.state_focused};
+
+    int[][] states = new int[][]{
+        statePressed,
+        stateFocused,
+        new int[]{0}
+    };
+
+    ColorStateList colorStateList = new ColorStateList(states, colors);
+    Button btn = findViewById(R.id.btn_state);
+    btn.setTextColor(colorStateList);
+
 
   }
 }
