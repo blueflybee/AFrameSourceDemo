@@ -21,10 +21,14 @@ import android.widget.TextView;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+
+import static android.os.Environment.DIRECTORY_MOVIES;
+import static android.os.Environment.DIRECTORY_MUSIC;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -134,22 +138,31 @@ public class MainActivity extends AppCompatActivity {
       }
     });
 
-    try {
-      String name = "context_study_file.text";
-      FileOutputStream output = openFileOutput(name, MODE_PRIVATE);
-      output.write("abc".getBytes(UTF_8));
-      output.close();
+//    try {
+//      String name = "context_study_file.text";
+//      FileOutputStream output = openFileOutput(name, MODE_PRIVATE);
+//      output.write("abc".getBytes(UTF_8));
+//      output.close();
+//
+//      FileInputStream input = openFileInput(name);
+//      byte[] buffer = new byte[100];
+//      int len = input.read(buffer);
+//      String result = new String(buffer, 0, len, UTF_8);
+//      readFileTv.setText(result);
+//
+//    } catch (FileNotFoundException e) {
+//      e.printStackTrace();
+//    } catch (IOException e) {
+//      e.printStackTrace();
+//    }
 
-      FileInputStream input = openFileInput(name);
-      byte[] buffer = new byte[100];
-      int len = input.read(buffer);
-      String result = new String(buffer, 0, len, UTF_8);
-      readFileTv.setText(result);
-
-    } catch (FileNotFoundException e) {
-      e.printStackTrace();
-    } catch (IOException e) {
-      e.printStackTrace();
+    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+      File dataDir = getDataDir();
+      System.out.println("dataDir = " + dataDir);
+      System.out.println("getNoBackupFilesDir = " + getNoBackupFilesDir());
+      System.out.println("getExternalFilesDir root = " + getExternalFilesDir(null));
+      System.out.println("getExternalFilesDir music = " + getExternalFilesDir(DIRECTORY_MUSIC));
+      System.out.println("getExternalFilesDir movies = " + getExternalFilesDir(DIRECTORY_MOVIES));
     }
 
 
