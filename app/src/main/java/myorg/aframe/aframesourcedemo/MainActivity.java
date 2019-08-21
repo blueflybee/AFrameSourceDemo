@@ -1,12 +1,15 @@
 package myorg.aframe.aframesourcedemo;
 
 import android.content.ComponentCallbacks;
+import android.content.Context;
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.content.res.XmlResourceParser;
 import android.database.DatabaseErrorHandler;
 import android.database.sqlite.SQLiteDatabase;
+import android.databinding.DataBindingUtil;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -22,10 +25,9 @@ import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
+
+import myorg.aframe.aframesourcedemo.databinding.ActivityMainBinding;
 
 import static android.os.Environment.DIRECTORY_MOVIES;
 import static android.os.Environment.DIRECTORY_MUSIC;
@@ -34,12 +36,13 @@ public class MainActivity extends AppCompatActivity {
 
 
   public static final String UTF_8 = "utf-8";
+  private ActivityMainBinding mBinding;
 
   @RequiresApi(api = Build.VERSION_CODES.M)
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_main);
+    mBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
 
     SQLiteDatabase database = openOrCreateDatabase("test", MODE_ENABLE_WRITE_AHEAD_LOGGING, null, new DatabaseErrorHandler() {
       @Override
@@ -159,12 +162,29 @@ public class MainActivity extends AppCompatActivity {
     if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
       File dataDir = getDataDir();
       System.out.println("dataDir = " + dataDir);
+      System.out.println("getFilesDir = " + getFilesDir());
+      System.out.println("getDir = " + getDir("mydir", MODE_PRIVATE));
       System.out.println("getNoBackupFilesDir = " + getNoBackupFilesDir());
       System.out.println("getExternalFilesDir root = " + getExternalFilesDir(null));
       System.out.println("getExternalFilesDir music = " + getExternalFilesDir(DIRECTORY_MUSIC));
       System.out.println("getExternalFilesDir movies = " + getExternalFilesDir(DIRECTORY_MOVIES));
+
+      String[] files = fileList();
+      for (String file : files) {
+        System.out.println("fileList = " + file);
+      }
+
+
     }
 
+    mBinding.btnExStore.setOnClickListener(v -> startActivity(new Intent(getContext(), ExStorageActivity.class)));
 
+
+
+
+  }
+
+  private Context getContext() {
+    return this;
   }
 }

@@ -12,35 +12,26 @@
         android:layout_height="match_parent"
         tools:context=".MainActivity">
 
-        <TextView
-            android:id="@+id/tv_test"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Hello World!"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
         <Button
-            android:id="@+id/btn_state"
+            android:id="@+id/btn_create_external_public_pic"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="color_state_list" />
-
-
-        <TextView
-            android:id="@+id/tv_io_file"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@+id/btn_state" />
+            android:text="创建external_public_图库" />
 
         <Button
-            android:id="@+id/btn_ex_store"
+            android:id="@+id/btn_create_external_private_pic"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="外部存储"
-            app:layout_constraintTop_toBottomOf="@+id/btn_state" />
+            app:layout_constraintTop_toBottomOf="@+id/btn_create_external_public_pic"
+            android:text="创建external_private_图库" />
+
+        <Button
+            android:id="@+id/btn_create_external_private_file"
+            app:layout_constraintTop_toBottomOf="@id/btn_create_external_private_pic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="创建external_private_文件" />
 
     </android.support.constraint.ConstraintLayout>
 </layout>
