@@ -5,17 +5,19 @@ import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.storage.StorageManager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.View;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.UUID;
 
 import myorg.aframe.aframesourcedemo.databinding.ActivityExStorageBinding;
 
@@ -34,6 +36,31 @@ public class ExStorageActivity extends AppCompatActivity {
     mBinding.btnCreateExternalPrivatePic.setOnClickListener(v -> createExternalStoragePrivatePicture());
     mBinding.btnCreateExternalPublicPic.setOnClickListener(v -> createExternalStoragePublicPicture());
 
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+      File[] externalFilesDirs = getExternalFilesDirs(null);
+      for (File externalFilesDir : externalFilesDirs) {
+        System.out.println("externalFilesDir = " + externalFilesDir);
+      }
+    }
+
+    printCacheQuotaBytes();
+
+  }
+
+  private void printCacheQuotaBytes() {
+    StorageManager storageManager = (StorageManager) getSystemService(STORAGE_SERVICE);
+    File cacheDir = getCacheDir();
+    System.out.println("storageManager = " + storageManager);
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+      try {
+        UUID uuidForPath = storageManager.getUuidForPath(cacheDir);
+        System.out.println("uuidForPath = " + uuidForPath);
+        long cacheQuotaBytes = storageManager.getCacheQuotaBytes(uuidForPath);
+        System.out.println("cacheQuotaBytes = " + cacheQuotaBytes);
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
+    }
   }
 
   private void createExternalStoragePrivateFile() {

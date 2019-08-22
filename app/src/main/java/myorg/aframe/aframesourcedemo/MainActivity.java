@@ -13,6 +13,7 @@ import android.databinding.DataBindingUtil;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.StatFs;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.util.AttributeSet;
@@ -31,6 +32,7 @@ import myorg.aframe.aframesourcedemo.databinding.ActivityMainBinding;
 
 import static android.os.Environment.DIRECTORY_MOVIES;
 import static android.os.Environment.DIRECTORY_MUSIC;
+import static android.os.Environment.isExternalStorageEmulated;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -168,11 +170,30 @@ public class MainActivity extends AppCompatActivity {
       System.out.println("getExternalFilesDir root = " + getExternalFilesDir(null));
       System.out.println("getExternalFilesDir music = " + getExternalFilesDir(DIRECTORY_MUSIC));
       System.out.println("getExternalFilesDir movies = " + getExternalFilesDir(DIRECTORY_MOVIES));
+      System.out.println("getObbDir = " + getObbDir());
+      System.out.println("getCodeCacheDir = " + getCodeCacheDir());
+      System.out.println("getCacheDir = " + getCacheDir());
+      System.out.println("getExternalCacheDir = " + getExternalCacheDir());
+      System.out.println("isExternalStorageEmulated = " + isExternalStorageEmulated());
 
       String[] files = fileList();
       for (String file : files) {
         System.out.println("fileList = " + file);
       }
+
+      File[] externalCacheDirs = getExternalCacheDirs();
+      for (File cacheDir : externalCacheDirs) {
+        System.out.println("ext cacheDir = " + cacheDir);
+      }
+
+      File[] externalMediaDirs = getExternalMediaDirs();
+      for (File externalMediaDir : externalMediaDirs) {
+        System.out.println("externalMediaDir = " + externalMediaDir);
+      }
+
+      StatFs statFs = new StatFs(getExternalFilesDir(null).getAbsolutePath());
+      long totalBytes = statFs.getTotalBytes();
+      System.out.println("totalBytes = " + totalBytes);
 
 
     }
