@@ -199,8 +199,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     mBinding.btnExStore.setOnClickListener(v -> startActivity(new Intent(getContext(), ExStorageActivity.class)));
-
-
+    mBinding.btnIntent.setOnClickListener(v -> startActivity(new Intent(getContext(), IntentActivity.class)));
 
 
   }
