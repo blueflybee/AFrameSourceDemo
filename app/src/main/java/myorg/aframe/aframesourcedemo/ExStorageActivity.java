@@ -44,7 +44,26 @@ public class ExStorageActivity extends AppCompatActivity {
     }
 
     printCacheQuotaBytes();
+    printStorageInfo();
 
+  }
+
+  private void printStorageInfo() {
+    File filesDir = getFilesDir();
+    System.out.println("filesDir.getTotalSpace() = " + filesDir.getTotalSpace());
+    System.out.println("filesDir.getFreeSpace() = " + filesDir.getFreeSpace());
+    System.out.println("filesDir.getUsableSpace() = " + filesDir.getUsableSpace());
+    File emulatedDir = new File("/storage/emulated/0/");
+    System.out.println("emulatedDir.getTotalSpace() = " + emulatedDir.getTotalSpace());
+
+    try {
+      File tempFile = File.createTempFile("prefix", null, getCacheDir());
+      System.out.println("File.createTempFile() = " + tempFile);
+//      boolean success = deleteFile(tempFile.getName());
+//      System.out.println("success = " + success);
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
   }
 
   private void printCacheQuotaBytes() {
