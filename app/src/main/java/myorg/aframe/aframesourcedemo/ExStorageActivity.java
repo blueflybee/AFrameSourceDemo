@@ -12,6 +12,8 @@ import android.os.storage.StorageManager;
 import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 
+import com.abc.MyExStorageBinding;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -19,13 +21,12 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.UUID;
 
-import myorg.aframe.aframesourcedemo.databinding.ActivityExStorageBinding;
 
 public class ExStorageActivity extends AppCompatActivity {
 
 
   public static final String UTF_8 = "utf-8";
-  private ActivityExStorageBinding mBinding;
+  private MyExStorageBinding mBinding;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {

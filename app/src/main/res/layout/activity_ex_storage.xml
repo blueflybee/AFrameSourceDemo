@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <data>
+    <data class="com.abc.MyExStorageBinding">
 
     </data>
 
@@ -17,21 +17,24 @@
             android:id="@+id/btn_create_external_public_pic"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="创建external_public_图库" />
+            android:text="创建external_public_图库"
+            tools:ignore="MissingConstraints" />
 
         <Button
             android:id="@+id/btn_create_external_private_pic"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@+id/btn_create_external_public_pic"
-            android:text="创建external_private_图库" />
+            android:text="创建external_private_图库"
+            tools:ignore="MissingConstraints" />
 
         <Button
             android:id="@+id/btn_create_external_private_file"
             app:layout_constraintTop_toBottomOf="@id/btn_create_external_private_pic"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="创建external_private_文件" />
+            android:text="创建external_private_文件"
+            tools:ignore="MissingConstraints" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
