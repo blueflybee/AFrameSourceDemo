@@ -3,12 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-        <data>
-            <variable
-                name="viewModel"
-                type="myorg.aframe.aframesourcedemo.viewmodel.MyViewModel" />
+    <data>
 
-        </data>
+        <variable
+            name="viewModel"
+            type="myorg.aframe.aframesourcedemo.viewmodel.MyViewModel" />
+
+    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/root"
@@ -20,18 +21,37 @@
             android:id="@+id/et_test"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="@+id/root"
             android:text="@={viewModel.name}"
+            app:layout_constraintTop_toTopOf="@+id/root"
             tools:ignore="MissingConstraints" />
 
         <myorg.aframe.aframesourcedemo.customview.MyBindView
             android:id="@+id/my_bindview"
-            app:layout_constraintTop_toBottomOf="@+id/et_test"
-            app:exampleString="abcdasdfasdf"
-            app:time = "@{viewModel.time}"
             android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_height="20dp"
+            app:exampleString="abcdasdfasdf"
+            app:layout_constraintTop_toBottomOf="@+id/et_test"
+            app:time="@{viewModel.time}"
             tools:ignore="MissingConstraints" />
+
+
+        <ProgressBar
+            android:id="@+id/pb_1"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            app:layout_constraintTop_toBottomOf="@id/my_bindview"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:progress="@{viewModel.number}"
+            app:hideIfZero="@{viewModel.number}"
+            android:max="100" />
+
+        <Button
+            android:id="@+id/btn_1"
+            app:layout_constraintTop_toBottomOf="@id/pb_1"
+            android:onClick="@{()-> viewModel.addProgress()}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="add progress" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

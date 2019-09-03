@@ -26,7 +26,7 @@ public class MyBindView extends View {
   private float mTextWidth;
   private float mTextHeight;
 
-  private Long mTime = -100l;
+  private String mTime = "";
 
   public MyBindView(Context context) {
     super(context);
@@ -201,11 +201,11 @@ public class MyBindView extends View {
     mExampleDrawable = exampleDrawable;
   }
 
-  public Long getTime() {
+  public String  getTime() {
     return mTime;
   }
 
-  public void setTime(Long time) {
+  public void setTime(String  time) {
     System.out.println("MyBindView.setTime");
     mTime = time;
 
