@@ -39,6 +39,11 @@
             android:screenOrientation="portrait" />
 
 
+        <activity
+            android:name=".DataBindingActivity"
+            android:screenOrientation="portrait" />
+
+
         <receiver
             android:name=".IntentActivity$BroadcastReceiver1"
             android:enabled="true"

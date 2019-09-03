@@ -49,5 +49,12 @@
             android:text="Intent相关"
             app:layout_constraintTop_toBottomOf="@+id/btn_ex_store" />
 
+        <Button
+            android:id="@+id/btn_data_bind"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="data binding"
+            app:layout_constraintTop_toBottomOf="@+id/btn_intent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
