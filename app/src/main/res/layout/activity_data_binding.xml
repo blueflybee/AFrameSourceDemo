@@ -28,10 +28,10 @@
         <myorg.aframe.aframesourcedemo.customview.MyBindView
             android:id="@+id/my_bindview"
             android:layout_width="100dp"
-            android:layout_height="20dp"
+            android:layout_height="100dp"
             app:exampleString="abcdasdfasdf"
             app:layout_constraintTop_toBottomOf="@+id/et_test"
-            app:time="@{viewModel.time}"
+            app:time="@={viewModel.time}"
             tools:ignore="MissingConstraints" />
 
 
@@ -52,6 +52,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="add progress" />
+
+        <Button
+            android:id="@+id/btn_2"
+            app:layout_constraintTop_toBottomOf="@id/btn_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="change attr time" />
+
+        <Button
+            android:id="@+id/btn_3"
+            app:layout_constraintTop_toBottomOf="@id/btn_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="mediator LiveData" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
